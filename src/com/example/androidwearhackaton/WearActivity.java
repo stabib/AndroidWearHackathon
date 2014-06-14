@@ -1,18 +1,20 @@
 package com.example.androidwearhackaton;
 
 import android.app.Activity;
-import android.app.ActionBar;
 import android.app.Fragment;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.os.Build;
 
 public class WearActivity extends Activity {
 
+    
+    private final Handler mHandler = new Handler();
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +25,36 @@ public class WearActivity extends Activity {
                     .add(R.id.container, new PlaceholderFragment())
                     .commit();
         }
+        
+        
+        
+    }
+    
+    private int value = 0;
+    
+    
+    private Runnable mUpdateRunnable = new Runnable() {
+        
+        @Override
+        public void run() {
+            mHandler.removeCallbacks(mUpdateRunnable);
+            NotificationUtil.createNotification(WearActivity.this, ++value);
+            mHandler.postDelayed(mUpdateRunnable, 1000);
+            
+        }
+    };
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mHandler.post(mUpdateRunnable);
+    };
+    
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mHandler.removeCallbacks(mUpdateRunnable);
+        
     }
 
 
