@@ -50,16 +50,14 @@ public class WearActivity extends Activity {
         }
     }
     
-    private int value = 0;
-    
     
     private Runnable mUpdateRunnable = new Runnable() {
         
         @Override
         public void run() {
             mHandler.removeCallbacks(mUpdateRunnable);
-            NotificationUtil.createNotification(WearActivity.this, "Speedometer", String.valueOf(++value));
-            mHandler.postDelayed(mUpdateRunnable, 1000);
+            NotificationUtil.createNotification(WearActivity.this, "Accelerometer", mSensorObserver.getSensorData());
+            mHandler.postDelayed(mUpdateRunnable, 200);
             
         }
     };

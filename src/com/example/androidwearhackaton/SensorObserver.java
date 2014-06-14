@@ -121,7 +121,7 @@ public class SensorObserver implements SensorEventListener{
 			*/
 		}
 		
-		sensorData = String.format("[{'X':%d,'y':%d,'z':%d}]", mLastX, mLastY, mLastZ);
+		sensorData = String.format("[{'X':%f,'y':%f,'z':%f}]", mLastX, mLastY, mLastZ);
 	}
 
 	
