@@ -25,18 +25,18 @@ public class SensorObserver implements SensorEventListener{
 	private boolean mInitialized = false;
 	private final float NOISE = (float)2.0;
 
-	
-	public void main(int sensorID){
-		switch(sensorID){
-			case 1:
-				whichSensor = "Accelerometer";
-				accelerometer();
-				break;
-		}
-	}
-	
-	
-	
+	private final Context context;
+
+    public SensorObserver(Context context, int sensorID) {
+        this.context = context;
+        switch(sensorID){
+		case 1:
+			whichSensor = "Accelerometer";
+			accelerometer();
+			break;
+        }
+    }
+    
 	//PER TUTORIAL
 	//THIS MAY NEED TO GET MOVED TO WearActivity.java TO AVOID BATTERY DRAIN
 	/*
@@ -61,7 +61,7 @@ public class SensorObserver implements SensorEventListener{
 	
 	private void accelerometer(){
 		//UNCOMMENTING THIS LINE BREAKS COMPILATION
-		//mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+		mSensorManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
 		mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 		mSensorManager.registerListener(this, mAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
 	}
