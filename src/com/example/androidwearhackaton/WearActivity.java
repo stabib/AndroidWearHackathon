@@ -23,6 +23,8 @@ public class WearActivity extends Activity {
                     .add(R.id.container, new PlaceholderFragment())
                     .commit();
         }
+        
+        NotificationUtil.createNotification(this);
     }
 
 
