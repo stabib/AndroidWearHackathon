@@ -21,6 +21,10 @@ public class WearActivity extends Activity {
     
     private RadioGroup mRadioGroup;
     private SensorObserver mSensorObserver;
+    private String s = "Speedometer";
+    private String a = "Accelerometer";
+    
+    private String currentTitle = a;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +44,7 @@ public class WearActivity extends Activity {
         switch(view.getId()) {
             case R.id.bt_accel:
                 if (checked)
-                        Log.d("selection", "Accelerator");
+                    Log.d("selection", "Accelerator");
                         
                 break;
             case R.id.bt_speed:
@@ -56,7 +60,7 @@ public class WearActivity extends Activity {
         @Override
         public void run() {
             mHandler.removeCallbacks(mUpdateRunnable);
-            NotificationUtil.createNotification(WearActivity.this, "Accelerometer", mSensorObserver.getSensorData());
+            NotificationUtil.createNotification(WearActivity.this, currentTitle, mSensorObserver.getSensorData());
             mHandler.postDelayed(mUpdateRunnable, 200);
             
         }
