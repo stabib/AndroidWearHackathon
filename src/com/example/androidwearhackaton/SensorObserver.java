@@ -111,7 +111,7 @@ public class SensorObserver implements SensorEventListener{
 			*/
 		}
 	}
-	
+
 	
 	//GETTER & SETTERS
 	public boolean isSensing() {
