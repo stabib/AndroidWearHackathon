@@ -8,7 +8,7 @@ import android.support.v4.app.NotificationCompat;
 
 public class NotificationUtil {
     
-    public static void createNotification(Activity a){
+    public static void createNotification(Activity a, int value){
         int notificationId = 001;
      // Build intent for notification content
      Intent viewIntent = new Intent(a, WearActivity.class);
@@ -19,7 +19,7 @@ public class NotificationUtil {
              new NotificationCompat.Builder(a)
              .setSmallIcon(R.drawable.ic_launcher)
              .setContentTitle("Android Wear Awesomeness")
-             .setContentText("Hacky Whacky")
+             .setContentText(value + " Hacky Whacky")
              .setContentIntent(viewPendingIntent);
 
      // Get an instance of the NotificationManager service
