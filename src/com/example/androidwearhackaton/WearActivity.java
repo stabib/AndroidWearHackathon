@@ -4,11 +4,15 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.RadioGroup.OnCheckedChangeListener;
 
 public class WearActivity extends Activity {
 
@@ -30,6 +34,24 @@ public class WearActivity extends Activity {
         
     }
     
+    public void onRadioButtonClicked(View view) {
+        // Is the button now checked?
+        boolean checked = ((RadioButton) view).isChecked();
+        
+        // Check which radio button was clicked
+        switch(view.getId()) {
+            case R.id.bt_accel:
+                if (checked)
+                        Log.d("selection", "Accelerator");
+                        
+                break;
+            case R.id.bt_speed:
+                if (checked)
+                    Log.d("selection", "Speedometer");
+                break;
+        }
+    }
+    
     private int value = 0;
     
     
@@ -38,7 +60,7 @@ public class WearActivity extends Activity {
         @Override
         public void run() {
             mHandler.removeCallbacks(mUpdateRunnable);
-            NotificationUtil.createNotification(WearActivity.this, ++value);
+            NotificationUtil.createNotification(WearActivity.this, "Speedometer", String.valueOf(++value));
             mHandler.postDelayed(mUpdateRunnable, 1000);
             
         }
@@ -85,11 +107,16 @@ public class WearActivity extends Activity {
 
         public PlaceholderFragment() {
         }
+        
+        private RadioGroup mRadioGroup;
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                 Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_wear, container, false);
+            
+            mRadioGroup = (RadioGroup)rootView.findViewById(R.id.sensors);
+            
             return rootView;
         }
     }
