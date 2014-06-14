@@ -26,6 +26,16 @@ public class SensorObserver implements SensorEventListener{
 	private final float NOISE = (float)2.0;
 
 	
+	public void main(int sensorID){
+		switch(sensorID){
+			case 1:
+				whichSensor = "Accelerometer";
+				accelerometer();
+				break;
+		}
+	}
+	
+	
 	
 	//PER TUTORIAL
 	//THIS MAY NEED TO GET MOVED TO WearActivity.java TO AVOID BATTERY DRAIN
