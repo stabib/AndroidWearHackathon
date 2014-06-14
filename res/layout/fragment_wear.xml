@@ -8,26 +8,4 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.androidwearhackaton.WearActivity$PlaceholderFragment" >
 
-    <RadioGroup
-        android:id="@+id/sensors"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" >
-
-        <RadioButton
-            android:id="@+id/bt_accel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:onClick="onRadioButtonClicked"
-            android:text="Accelerometer" />
-
-        <RadioButton
-            android:id="@+id/bt_speed"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onRadioButtonClicked"
-            android:text="Speedometer" />
-    </RadioGroup>
-
 </RelativeLayout>

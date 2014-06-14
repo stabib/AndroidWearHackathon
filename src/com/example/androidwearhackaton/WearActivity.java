@@ -19,18 +19,16 @@ public class WearActivity extends Activity {
     
     private final Handler mHandler = new Handler();
     
+    private RadioGroup mRadioGroup;
+    private SensorObserver mSensorObserver;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wear);
 
-        if (savedInstanceState == null) {
-            getFragmentManager().beginTransaction()
-                    .add(R.id.container, new PlaceholderFragment())
-                    .commit();
-        }
-        
-        
+        mRadioGroup = (RadioGroup)findViewById(R.id.sensors);
+        mSensorObserver = new SensorObserver(this, 1);
         
     }
     
