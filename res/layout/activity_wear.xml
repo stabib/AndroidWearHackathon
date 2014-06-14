@@ -29,4 +29,17 @@
             android:visibility="gone" />
     </RadioGroup>
 
+    <LinearLayout>
+    	<TextView android:id="@+id/tv_thres"
+    	    android:layout_width="wrap_content"
+    	    android:layout_height="wrap_content"
+    	    android:text="Threshold" />
+    	<EditText
+		    android:id="@+id/et_thres"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:hint="MPH Threshold"
+		    android:inputType="text" />
+    </LinearLayout>
+    
 </RelativeLayout>
