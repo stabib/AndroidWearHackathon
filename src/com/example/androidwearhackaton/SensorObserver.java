@@ -1,10 +1,13 @@
 package com.example.androidwearhackaton;
 
+import java.util.Date;
+
 import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.os.Handler;
 
 //ROB - MODIFIED VERSION OF THE TUTORIAL LOCATED BELOW
 //TUTORIAL LOCATED HERE:
@@ -17,10 +20,16 @@ public class SensorObserver implements SensorEventListener{
 	private String whichSensor = "";
 	private SensorManager mSensorManager;
 	private Sensor mAccelerometer;
-	
+	double calibration;
 	private float mLastX;
 	private float mLastY;
 	private float mLastZ;
+	
+	float appliedAcceleration = 0;
+	float currentAcceleration = 0;
+	float velocity = 0;
+	Date lastUpdate;
+	Handler handler = new Handler();
 	
 	private boolean mInitialized = false;
 	private final float NOISE = (float)2.0;
@@ -124,6 +133,62 @@ public class SensorObserver implements SensorEventListener{
 		sensorData = String.format("[{'X':%f,'y':%f,'z':%f}]", mLastX, mLastY, mLastZ);
 	}
 
+
+	
+	/*
+	//FROM TUTORIAL
+	//@Override
+	public void onSensorChanged(SensorEvent event) {
+		//WE MAY WANT TO BAG THE ISSENSING AND USE THE LISTENER...
+		//BUT FOR NOW LETS SET SENSING HERE
+		isSensing = true;
+		
+		float x = event.values[0];
+		float y = event.values[1];
+		float z = event.values[2];
+		if (!mInitialized) {
+			mLastX = x;
+			mLastY = y;
+			mLastZ = z;
+			
+			mInitialized = true;
+		} else {
+			double fx = x;
+	        double fy = y;
+	        double fz = z;
+	        double a = -1
+	                * Math.sqrt(Math.pow(fx, 2) + Math.pow(fy, 2)
+	                        + Math.pow(fz, 2));
+	        if (calibration == Double.NaN)
+	            calibration = a;
+	        else {
+	            updateVelocity();
+	            currentAcceleration = (float) a;
+	        }
+		}
+		
+		sensorData = String.format("[{'X':%f,'y':%f,'z':%f}]", mLastX, mLastY, mLastZ);
+	}
+	
+
+	
+	private void updateVelocity() {
+	    // Calculate how long this acceleration has been applied.
+	    Date timeNow = new Date(System.currentTimeMillis());
+	    long timeDelta = timeNow.getTime() - lastUpdate.getTime();
+	    lastUpdate.setTime(timeNow.getTime());
+	    // Calculate the change in velocity at the
+	    // current acceleration since the last update.
+	    float deltaVelocity = appliedAcceleration * (timeDelta / 1000);
+	    appliedAcceleration = currentAcceleration;
+	    // Add the velocity change to the current velocity.
+	    velocity += deltaVelocity;
+	    // Convert from meters per second to miles per hour.
+	    double mph = (Math.round(velocity / 1.6 * 3.6));
+	    sensorData = String.valueOf(mph);
+	    //myTextView.setText(String.valueOf(mph) + "mph");
+	}
+	*/
 	
 	//GETTER & SETTERS
 	public boolean isSensing() {

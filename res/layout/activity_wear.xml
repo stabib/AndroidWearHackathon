@@ -29,7 +29,8 @@
             android:visibility="gone" />
     </RadioGroup>
 
-    <LinearLayout>
+    <LinearLayout android:layout_below="@+id/sensors" android:layout_width="wrap_content"
+    	    android:layout_height="wrap_content">
     	<TextView android:id="@+id/tv_thres"
     	    android:layout_width="wrap_content"
     	    android:layout_height="wrap_content"
